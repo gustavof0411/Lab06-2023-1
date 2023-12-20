@@ -4,7 +4,25 @@ public class OrdenarQuick implements Ordenador {
 
     @Override
     public int[] ordene(int[] array) {
+int indicePivo = quickParticio(array, 0, array.length-1);
+        for (int i = 0; i < indicePivo; i++) {
+            if (array[i] > array[i+1]) {
+                quickParticio(array, 0, indicePivo-1);
+            }
+        }
+        for (int i = indicePivo+1; i < array.length-1; i++) {
+            if (array[i] > array[i+1]) {
+                quickParticio(array, indicePivo+1, array.length-1);
+            }
+        }
+        for (int i = 0; i < indicePivo; i++) { // verifica se o array está organizado
+            if (array[i] > array[i+1]) {
+                ordene(array);
+            }
+        }
+        
         return array;
+
     }
 
     public int quickParticio(int[] array, int inicio, int fim) {
